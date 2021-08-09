@@ -40,7 +40,13 @@ if (process.env.NODE_ENV === "development") {
 
 //Set static folder
 app.use(express.static(path.join(__dirname, "public")));
-
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "public/index.html"), function (err) {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
 //Sanitize data
 app.use(mongoSanitize());
 
