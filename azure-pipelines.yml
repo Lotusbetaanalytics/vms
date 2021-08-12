@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: 'c0912175-2950-47ce-a46a-e2810e481604'
   imageRepository: 'lotusbetaanalyticsvmsnode'
   containerRegistry: 'busdev.azurecr.io'
-  dockerfilePath: 'vms/Dockerfile'
+  dockerfilePath: '**/vms/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'busdev92135fad-auth'
 
