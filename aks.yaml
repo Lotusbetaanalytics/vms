@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: vms
+
+spec:
+
+  replicas: 1
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+
+      maxSurge: 1
+
+      maxUnavailable: 1
+
+  minReadySeconds: 5 
+  selector:
+    matchLabels:
+      app: vms
+  template:
+
+    metadata:
+
+      labels:
+
+        app: vms
+
+    spec:
+
+      containers:
+
+      - name: vms
+
+        image: __ACR__/lotusbetaanalyticsvmsnode
+
+        imagePullPolicy: Always
+
+        ports:
+
+        - containerPort: 80
+
+        resources:
+
+          requests:
+
+            cpu: 250m
+
+          limits:
+
+            cpu: 500m
+
+        
+---
+
+apiVersion: v1
+
+kind: Service
+
+metadata:
+
+  name: vms
+
+spec:
+
+  type: LoadBalancer
+
+  ports:
+
+  - port: 80
+
+  selector:
+    app: vms

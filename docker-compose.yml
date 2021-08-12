@@ -3,12 +3,13 @@ services:
   web:
     build:
       context: ./
-      target: dev
+      target: production
     volumes:
       - .:/app
-    command: npm run dev
+    command: npm start
     ports:
       - "8000:8000"
     environment:
-      NODE_ENV: development
-      DEBUG: nodejs-docker-express:*
+      NODE_ENV: production
+      MONGO_URI: __URI__ 
+      
