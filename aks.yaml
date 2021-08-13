@@ -36,7 +36,7 @@ spec:
 
       - name: vms
 
-        image: __ACR__/lotusbetaanalyticsvmsnode
+        image: __ACR__/lotusbetaanalyticsvmsnode_web
 
         imagePullPolicy: Always
 
