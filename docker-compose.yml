@@ -5,7 +5,7 @@ services:
       context: ./
       target: production
     volumes:
-      - ./app
+      - .:/app
     command: npm start
     ports:
       - "8000:8000"
