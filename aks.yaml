@@ -57,3 +57,21 @@ spec:
     app: vms
 
 ---
+apiVersion: v1
+
+kind: Service
+
+metadata:
+
+  name: vms
+
+spec:
+
+  type: LoadBalancer
+
+  ports:
+
+  - port: 80
+
+  selector:
+    app: vms
