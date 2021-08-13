@@ -17,7 +17,7 @@ EXPOSE 8000
 FROM base as production
 ENV NODE_ENV=production
 RUN npm install
-COPY . /app
+COPY . .
 CMD ["node", "server.js"]
 
 FROM base as dev
