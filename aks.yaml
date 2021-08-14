@@ -38,7 +38,7 @@ spec:
 
       - name: vmsnode
 
-        image: __ACR__/lotusbetaanalyticsvmsnode_web:latest
+        image: __ACR__/lotusbetaanalyticsvmsnode_web
 
         imagePullPolicy: Always
 
