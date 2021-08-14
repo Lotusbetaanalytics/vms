@@ -5,7 +5,7 @@ kind: Deployment
 
 metadata:
 
-  name: vms
+  name: vmsnode
   namespace: vms-node
 
 spec:
@@ -23,20 +23,20 @@ spec:
   minReadySeconds: 5 
   selector:
     matchLabels:
-      app: vms
+      app: vmsnode
   template:
 
     metadata:
 
       labels:
 
-        app: vms
+        app: vmsnode
 
     spec:
 
       containers:
 
-      - name: vms
+      - name: vmsnode
 
         image: __ACR__/lotusbetaanalyticsvmsnode_web:latest
 
@@ -67,7 +67,7 @@ kind: Service
 
 metadata:
 
-  name: vms
+  name: vmsnode
 
 spec:
   type: ClusterIP
@@ -78,7 +78,7 @@ spec:
 
   selector:
 
-    app: vms
+    app: vmsnode
 
 ---
 apiVersion: v1
@@ -98,6 +98,6 @@ spec:
   - port: 8000
 
   selector:
-    app: vms
+    app: vmsnode
 
   
