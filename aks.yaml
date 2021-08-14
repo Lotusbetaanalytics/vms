@@ -5,6 +5,7 @@ kind: Deployment
 metadata:
 
   name: vms
+  namespace: vms-node
   labels:
     app: vms
 spec:
@@ -27,13 +28,13 @@ spec:
 
       - name: vms
 
-        image: __ACR__/lotusbetaanalyticsvmsnode_web
+        image: __ACR__/lotusbetaanalyticsvmsnode_web:latest
 
         ports:
 
         - containerPort: 6379
-
-          name: vmsservice
+        
+         
 
 
 ---
@@ -50,7 +51,8 @@ spec:
   type: ClusterIP
   ports:
 
-  - port: 6379
+  - port: 6350
+  
 
   selector:
 
@@ -75,3 +77,5 @@ spec:
 
   selector:
     app: vms
+
+  
