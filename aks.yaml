@@ -73,7 +73,7 @@ spec:
   type: ClusterIP
   ports:
 
-  - port: 6350
+  - port: 8000
   
 
   selector:
@@ -95,7 +95,7 @@ spec:
 
   ports:
 
-  - port: 80
+  - port: 8000
 
   selector:
     app: vms
