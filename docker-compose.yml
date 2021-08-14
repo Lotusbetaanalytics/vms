@@ -12,5 +12,5 @@ services:
       - "8000:8000"
     environment:
       NODE_ENV: production
-      MONGO_URI: __URI__  
+    
       
