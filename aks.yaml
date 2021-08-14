@@ -1,25 +1,64 @@
 
+---
+
 apiVersion: apps/v1
+
 kind: Deployment
+
 metadata:
-  name: vmsnode
-  labels:
-    app: vmsnode
+
+  name: vms
+  namespace: vms-node
+
 spec:
+
   replicas: 1
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+
+      maxSurge: 1
+
+      maxUnavailable: 1
+
+  minReadySeconds: 5 
   selector:
     matchLabels:
-      app: vmsnode
+      app: vms
   template:
+
     metadata:
+
       labels:
-        app: vmsnode
+
+        app: mhc-front
+
     spec:
+
       containers:
-      - name: vmsnode
+
+      - name: vms
+
         image: __ACR__/lotusbetaanalyticsvmsnode_web:latest
+
+        imagePullPolicy: Always
+
         ports:
-        - containerPort: 8000
+
+        - containerPort: 80
+
+        resources:
+
+          requests:
+
+            cpu: 250m
+
+          limits:
+
+            cpu: 500m
+
+        
 ---
 
 apiVersion: v1
@@ -28,20 +67,20 @@ kind: Service
 
 metadata:
 
-  name: vmsnode
+  name: vms
 
 spec:
   type: ClusterIP
   ports:
 
-  - port: 8000
-  
+  - port: 6379
 
   selector:
 
-    app: vmsnode
+    app: vms
 
 ---
+
 apiVersion: v1
 
 kind: Service
@@ -56,9 +95,7 @@ spec:
 
   ports:
 
-  - port: 8000
+  - port: 80
 
   selector:
-    app: vmsnode
-
-  
+    app: vms
