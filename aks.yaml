@@ -32,7 +32,7 @@ spec:
 
       labels:
 
-        app: mhc-front
+        app: vms
 
     spec:
 
