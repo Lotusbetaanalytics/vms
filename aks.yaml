@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vmsfe-back
-  namespace: vms-node
+  
 spec:
   replicas: 1
   selector:
@@ -46,7 +46,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vmsfe
-  namespace: vms-node
+  
 spec:
   replicas: 1
   selector:
