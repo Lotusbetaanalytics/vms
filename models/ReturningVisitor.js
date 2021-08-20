@@ -32,7 +32,14 @@ const ReturningVisitorSchema = new mongoose.Schema({
   },
   date: {
     type: String,
-    default: Date.now,
+  },
+  status: {
+    type: String,
+    enum: ["Approved", "CheckedIn", "CheckedOut", "Pending", "Rejected"],
+    default: "Pending",
+  },
+  month: {
+    type: String,
   },
   timeIn: {
     type: String,

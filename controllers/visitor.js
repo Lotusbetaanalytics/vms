@@ -43,6 +43,7 @@ exports.createVisitor = asyncHandler(async (req, res, next) => {
       appointment: req.body.appointment,
       photo: req.body.photo,
       timeIn: req.body.timeIn,
+      date: req.body.date,
     });
   }
 

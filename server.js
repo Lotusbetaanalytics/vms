@@ -22,6 +22,8 @@ connectDB();
 // Routes Files
 const visitors = require("./routes/visitor");
 const returning = require("./routes/returningVisitor");
+const frontdesk = require("./routes/frontdesk");
+const flow = require("./routes/flow");
 
 const app = express();
 
@@ -47,6 +49,9 @@ app.get("/*", function (req, res) {
     }
   });
 });
+//enable CORS
+app.use(cors());
+
 //Sanitize data
 app.use(mongoSanitize());
 
@@ -66,14 +71,13 @@ app.use(limiter);
 //prevent http param pollution
 app.use(hpp());
 
-//enable CORS
-app.use(cors());
-
 //Mount Routers
 
 //Mount Routers
 app.use("/api/v1/visitors", visitors);
 app.use("/api/v1/returning", returning);
+app.use("/api/v1/frontdesk", frontdesk);
+app.use("/api/v1/frontdesk/flow", flow);
 
 app.use(errorHandler);
 
