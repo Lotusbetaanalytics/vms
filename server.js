@@ -40,15 +40,6 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-//Set static folder
-app.use(express.static(path.join(__dirname, "public")));
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "public/index.html"), function (err) {
-    if (err) {
-      res.status(500).send(err);
-    }
-  });
-});
 //enable CORS
 app.use(cors());
 
@@ -80,6 +71,16 @@ app.use("/api/v1/frontdesk", frontdesk);
 app.use("/api/v1/frontdesk/flow", flow);
 
 app.use(errorHandler);
+
+//Set static folder
+app.use(express.static(path.join(__dirname, "public")));
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "public/index.html"), function (err) {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
 
 const PORT = process.env.PORT || 8000;
 const server = app.listen(
