@@ -3,6 +3,8 @@ const asyncHandler = require("../middleware/async");
 const Visitor = require("../models/visitor");
 const ReturningVisitor = require("../models/ReturningVisitor");
 const visitor = require("../models/visitor");
+const Pusher = require("pusher");
+const PushNotifications = require("@pusher/push-notifications-server");
 
 // @desc    Get all visitors
 // @route   GET/api/v1/visitors
@@ -46,7 +48,17 @@ exports.createVisitor = asyncHandler(async (req, res, next) => {
       date: req.body.date,
     });
   }
+  const pusher = new Pusher({
+    appId: "1260379",
+    key: "f82393c013f75193d268",
+    secret: "bcc27c07bb60ec07e087",
+    cluster: "mt1",
+    useTLS: true,
+  });
 
+  pusher.trigger("my-channel", "my-event", {
+    message: `Hello there! ${req.body.fullname} is here to see ${req.body.host}`,
+  });
   res.status(201).json({
     success: true,
     data: visitor,

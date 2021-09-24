@@ -70,7 +70,7 @@ exports.logout = asyncHandler(async (req, res, next) => {
 // @access   Private
 
 exports.getMe = asyncHandler(async (req, res, next) => {
-  const frontdesk = await Frontdesk.findById(req.admin.id);
+  const frontdesk = await Frontdesk.findById(req.frontdesk.id);
   res.status(200).json({
     success: true,
     data: frontdesk,

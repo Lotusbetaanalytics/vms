@@ -24,6 +24,7 @@ const visitors = require("./routes/visitor");
 const returning = require("./routes/returningVisitor");
 const frontdesk = require("./routes/frontdesk");
 const flow = require("./routes/flow");
+const guest = require("./routes/guest");
 
 const app = express();
 
@@ -69,6 +70,7 @@ app.use("/api/v1/visitors", visitors);
 app.use("/api/v1/returning", returning);
 app.use("/api/v1/frontdesk", frontdesk);
 app.use("/api/v1/frontdesk/flow", flow);
+app.use("/api/v1/frontdesk/guest", guest);
 
 app.use(errorHandler);
 

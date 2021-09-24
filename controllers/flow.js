@@ -22,7 +22,7 @@ exports.getDashboard = asyncHandler(async (req, res, next) => {
   const pending = await ReturningVisitor.find({
     date: req.body.date,
     status: "Pending",
-  });
+  }).populate({ path: "user", select: "fullname company email mobile" });
   const vin = await ReturningVisitor.find({
     date: req.body.date,
     status: "CheckedIn",
@@ -32,7 +32,7 @@ exports.getDashboard = asyncHandler(async (req, res, next) => {
     status: "CheckedOut",
   });
 
-  const all = await ReturningVisitor.find({}).populate({});
+  const all = await ReturningVisitor.find({});
 
   res.status(200).json({
     success: true,
