@@ -28,6 +28,7 @@ const frontdesk = require("./routes/frontdesk");
 const flow = require("./routes/flow");
 const guest = require("./routes/guest");
 const prebook = require("./routes/prebook");
+const employee = require("./routes/employee");
 
 const app = express();
 
@@ -78,6 +79,7 @@ app.use("/api/v1/frontdesk", frontdesk);
 app.use("/api/v1/frontdesk/flow", flow);
 app.use("/api/v1/frontdesk/guest", guest);
 app.use("/api/v1/frontdesk/prebook", prebook);
+app.use("/api/v1/frontdesk/employee", employee);
 
 app.use(errorHandler);
 
