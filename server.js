@@ -12,6 +12,8 @@ const hpp = require("hpp");
 const cors = require("cors");
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
+const socketIO = require("socket.io");
+const http = require("http");
 
 //load env vars
 dotenv.config({ path: "./config/config.env" });
@@ -25,6 +27,7 @@ const returning = require("./routes/returningVisitor");
 const frontdesk = require("./routes/frontdesk");
 const flow = require("./routes/flow");
 const guest = require("./routes/guest");
+const prebook = require("./routes/prebook");
 
 const app = express();
 
@@ -41,6 +44,9 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+const i = http.createServer(app);
+
+const io = socketIO(i);
 //enable CORS
 app.use(cors());
 
@@ -71,6 +77,7 @@ app.use("/api/v1/returning", returning);
 app.use("/api/v1/frontdesk", frontdesk);
 app.use("/api/v1/frontdesk/flow", flow);
 app.use("/api/v1/frontdesk/guest", guest);
+app.use("/api/v1/frontdesk/prebook", prebook);
 
 app.use(errorHandler);
 

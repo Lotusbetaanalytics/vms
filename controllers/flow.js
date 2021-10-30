@@ -23,24 +23,60 @@ exports.getDashboard = asyncHandler(async (req, res, next) => {
     date: req.body.date,
     status: "Pending",
   }).populate({ path: "user", select: "fullname company email mobile" });
+
+  const awaiting = await ReturningVisitor.find({
+    date: req.body.date,
+    status: "Awaiting Host",
+  }).populate({ path: "user", select: "fullname company email mobile" });
+
+  const approved = await ReturningVisitor.find({
+    date: req.body.date,
+    status: "Approved",
+  }).populate({ path: "user", select: "fullname company email mobile" });
+
+  const rejected = await ReturningVisitor.find({
+    date: req.body.date,
+    status: "Rejected",
+  }).populate({ path: "user", select: "fullname company email mobile" });
+
   const vin = await ReturningVisitor.find({
     date: req.body.date,
     status: "CheckedIn",
+  }).populate({
+    path: "user",
+    select: "fullname company email mobile",
   });
   const out = await ReturningVisitor.find({
     date: req.body.date,
     status: "CheckedOut",
+  }).populate({
+    path: "user",
+    select: "fullname company email mobile",
   });
 
   const all = await ReturningVisitor.find({});
+  const allLogs = await ReturningVisitor.find({}).populate({
+    path: "user",
+    select: "fullname company email mobile",
+  });
+  const today = await ReturningVisitor.find({
+    date: req.body.date,
+  }).populate({ path: "user", select: "fullname company email mobile" });
 
   res.status(200).json({
     success: true,
-    today: visitorsToday.length,
+    vtoday: visitorsToday.length,
     checkedIn: vin.length,
     checkedOut: out.length,
     all: all.length,
     pending: pending.length,
     newGuest: pending,
+    awaiting,
+    today,
+    allLogs,
+    approved,
+    rejected,
+    vin,
+    out,
   });
 });

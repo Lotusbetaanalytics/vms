@@ -35,7 +35,14 @@ const ReturningVisitorSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["Approved", "CheckedIn", "CheckedOut", "Pending", "Rejected"],
+    enum: [
+      "Approved",
+      "CheckedIn",
+      "CheckedOut",
+      "Pending",
+      "Rejected",
+      "Awaiting Host",
+    ],
     default: "Pending",
   },
   month: {
