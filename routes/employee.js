@@ -9,6 +9,6 @@ const router = express.Router();
 router
   .route("/")
   .post(createEmployee)
-  .get(protect, advancedResults(Employee), getEmployee);
+  .get(advancedResults(Employee), getEmployee);
 
 module.exports = router;
