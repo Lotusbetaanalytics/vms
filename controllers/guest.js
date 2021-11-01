@@ -1,6 +1,7 @@
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const ReturningVisitor = require("../models/ReturningVisitor");
+const Visitor = require("../models/visitor");
 const sendEmail = require("../utils/sendEmail");
 
 // @desc    Get single visitor info
@@ -174,14 +175,17 @@ exports.checkinGuest = asyncHandler(async (req, res, next) => {
 // @access   Private
 exports.checkOutGuest = asyncHandler(async (req, res, next) => {
   req.body.status = "CheckedOut";
-  const find = ReturningVisitor.findOne({
-    tag: req.body.tag,
-    date: req.body.date,
+  const find = await Visitor.findOne({
+    mobile: req.body.mobile,
   })
     .sort({ _id: -1 })
     .limit(1);
 
-  await ReturningVisitor.findByIdAndUpdate(find._id, req.body, {
+  const me = await ReturningVisitor.findOne({ user: find._id })
+    .sort({ _id: -1 })
+    .limit(1);
+
+  await ReturningVisitor.findByIdAndUpdate(me._id, req.body, {
     new: true,
     runValidators: true,
   });
