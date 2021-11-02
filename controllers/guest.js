@@ -124,7 +124,7 @@ exports.sendToHost = asyncHandler(async (req, res, next) => {
     res.status(200).json({ success: true, data: "Email Sent" });
   } catch (err) {
     console.log(err);
-    return next(new ErrorResponse(`Email could not be sent ${err}`, 500));
+    return next(new ErrorResponse(`Email could not be sent`, 500));
   }
 });
 
