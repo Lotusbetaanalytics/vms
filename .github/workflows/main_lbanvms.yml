@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'lbanvms'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CD9AE3211E67493BA5A9DC03053116D0 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E64270474DA34D7F9EDA3E34CEB1B7A5 }}
           package: .
