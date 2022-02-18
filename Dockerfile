@@ -23,6 +23,6 @@ CMD ["node", "server.js"]
 FROM base as dev
 ENV NODE_ENV=development
 RUN npm install -g nodemon && npm install
-COPY . /
+COPY . /app
 
 CMD [ "nodemon", "server.js" ]
